@@ -4,7 +4,6 @@
 
     $UserAccount = $_POST['UserAccount'];
     $UserPassword = $_POST['UserPassword'];
-    
     $HashPassword = hash('sha512', $UserPassword);
 
     $db_host = "dbhome.cs.nctu.edu.tw";

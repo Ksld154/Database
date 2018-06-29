@@ -28,17 +28,13 @@
             ?>
             
             <input type="text" placeholder = "Account" name = "account">
-            <br><br>
-            
+            <br><br>            
             <input type="password" placeholder = "Password" name="password">
             <br><br>
-
             <input type="password" placeholder = "Confirm Password" name="password2">
             <br><br>
-
             <input type="text" placeholder = "Name" name = "name">
-            <br><br>
-            
+            <br><br>            
             <input type="email" placeholder = "Email" name = "mail">
             <br><br>
 

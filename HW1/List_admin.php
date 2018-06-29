@@ -72,6 +72,7 @@
                 </p>
                 <input type="button"onClick="window.location.replace('Index.php');"style="float: right"value="Logout"><br><br>
                 <hr>
+                
                 <p align="left"style="font-size:23px;">Other Users:
                     <input type="button" onClick="window.location.replace('Signup.php');"style="float: right"value="Add New User">
                     <br>

@@ -9,15 +9,13 @@ $email = $_POST["mail"];
 
 if(isset($_SESSION['Authenticated']) && $_SESSION['Authenticated']==true){
     if(isset($_SESSION['UserIdentity']) && $_SESSION['UserIdentity']=="Admin"){
-        if(isset($_POST["admin"])) $admin = $_POST["admin"];
-    }else{
-        $admin = "User";
+        if(isset($_POST["admin"])){ 
+            $admin = $_POST["admin"];
+        }
     }
-}else{
+}else{  //防範盜連仔
     $admin = "User";
 }
-
-
 
 if(empty($account))
     echo "<script>alert('請輸入帳號！！'); window.location.replace('Signup.php');</script>";
@@ -48,13 +46,13 @@ else{
         $db = new PDO("mysql:host=$db_host; dbname=$db_name", $db_user, $db_password);
         # set the PDO error mode to exception
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $data_sql = "SELECT account FROM users WHERE account=?";
+        $data_sql = 'SELECT account FROM users WHERE account=?';
         $statement = $db->prepare("$data_sql");
         $statement->execute(array($account));
 
         if($statement->rowCount() == 0){
             $HashPassword = hash('sha512', $password);
-            $statement = $db->prepare("INSERT INTO `users` (account, password, name, mail, user_or_admin)
+            $statement = $db->prepare("INSERT INTO users (account, password, name, mail, user_or_admin)
             VALUES(:account, :password, :name, :mail, :user_or_admin) ");
 
             $statement->bindParam(':account', $account);
@@ -63,6 +61,7 @@ else{
             $statement->bindParam(':mail', $email);
             $statement->bindParam(':user_or_admin', $admin);
             $statement->execute();
+            
             if(isset($_SESSION['Authenticated']) && $_SESSION['Authenticated']==true){
                 if(isset($_SESSION['UserIdentity']) && $_SESSION['UserIdentity']=="Admin"){
                     echo "<script>alert('註冊成功ㄛ！！'); window.location.replace('List_admin.php');</script>";
